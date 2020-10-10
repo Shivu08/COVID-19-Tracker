@@ -9,13 +9,19 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table";
+import LineGraph from "./LineGraph";
+import { sortData } from "./util";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
-
-  //https://disease.sh/v3/covid-19/countries
+  const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -27,6 +33,9 @@ function App() {
             value: country.countryInfo.iso2,
           }));
 
+          const sortedData = sortData(data);
+          setTableData(sortedData);
+          setMapCountries(data);
           setCountries(countries);
         });
     };
@@ -87,12 +96,14 @@ function App() {
           />
         </div>
 
-        <Map />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app_right">
         <CardContent>
           <h3>Live cases by</h3>
+          <Table countries={tableData} />
           <h3>Worldwide new cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
