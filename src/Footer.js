@@ -14,7 +14,16 @@ function Footer() {
 
   return (
     <footer>
-      <h3>{t("Contact me at")}</h3> <br />
+      <h3>{t("Contact me at")}</h3>
+      <a
+        href="mailto:shivumalapur08@gmail.com"
+        className="mail"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        shivumalapur08@gmail.com
+      </a>
+      <br />
       <div className="links">
         <a
           href="https://www.linkedin.com/in/shivashankar-malapur-31963894/"
@@ -23,15 +32,6 @@ function Footer() {
           rel="noopener noreferrer"
         >
           <Linkedin />
-        </a>
-        
-        <a
-          href="mailto:shivumalapur08@gmail.com"
-          className="mail"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Mail />
         </a>
 
         <a
