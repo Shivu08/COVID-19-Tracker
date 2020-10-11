@@ -1,5 +1,5 @@
 import React from "react";
-import "./Map.css";
+import "./Map.scss";
 import { Map as LeafletMap, TileLayer } from "react-leaflet";
 import { showDataOnMap } from "./util";
 
